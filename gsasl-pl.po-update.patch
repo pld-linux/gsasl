@@ -1,11 +1,88 @@
---- gsasl-0.2.3/lib/po/pl.po.orig	2004-12-15 19:35:27.000000000 +0100
-+++ gsasl-0.2.3/lib/po/pl.po	2004-12-23 00:03:33.835944736 +0100
-@@ -174,7 +174,7 @@
+--- gsasl-0.2.5/po/pl.po.orig	2005-02-08 12:37:33.000000000 +0100
++++ gsasl-0.2.5/po/pl.po	2005-02-12 21:04:08.028637440 +0100
+@@ -1,21 +1,21 @@
+ # Polish translation for gsasl.
+-# Copyright (C) 2004 Free Software Foundation, Inc.
++# Copyright (C) 2004, 2005 Free Software Foundation, Inc.
+ # This file is distributed under the same license as the gsasl package.
+-# Jakub Bogusz <qboosh@pld-linux.org>, 2004.
++# Jakub Bogusz <qboosh@pld-linux.org>, 2004-2005.
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: gsasl 0.1.4\n"
++"Project-Id-Version: gsasl 0.2.5\n"
+ "Report-Msgid-Bugs-To: bug-gsasl@gnu.org\n"
+ "POT-Creation-Date: 2005-02-08 12:37+0100\n"
+-"PO-Revision-Date: 2004-08-25 22:41+0200\n"
++"PO-Revision-Date: 2005-02-12 21:01+0100\n"
+ "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
+ "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=ISO-8859-2\n"
+ "Content-Transfer-Encoding: 8bit\n"
+ 
+-#, fuzzy, c-format
++#, c-format
+ msgid "Choose SASL mechanism:\n"
+ msgstr "Wybór mechanizmów SASL:\n"
+ 
+--- gsasl-0.2.5/lib/po/pl.po.orig	2005-02-08 12:37:37.000000000 +0100
++++ gsasl-0.2.5/lib/po/pl.po	2005-02-12 21:03:41.134725936 +0100
+@@ -1,14 +1,14 @@
+ # Polish translation for libgsasl.
+-# Copyright (C) 2004 Free Software Foundation, Inc.
++# Copyright (C) 2004, 2005 Free Software Foundation, Inc.
+ # This file is distributed under the same license as the libgsasl package.
+-# Jakub Bogusz <qboosh@pld-linux.org>, 2004.
++# Jakub Bogusz <qboosh@pld-linux.org>, 2004-2005.
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: libgsasl 0.2.1\n"
++"Project-Id-Version: libgsasl 0.2.5\n"
+ "Report-Msgid-Bugs-To: bug-gsasl@gnu.org\n"
+ "POT-Creation-Date: 2005-02-08 12:37+0100\n"
+-"PO-Revision-Date: 2004-11-21 23:31+0100\n"
++"PO-Revision-Date: 2005-02-12 21:01+0100\n"
+ "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
+ "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+ "MIME-Version: 1.0\n"
+@@ -18,9 +18,8 @@
+ msgid "Libgsasl success"
+ msgstr "Sukces libgsasl"
+ 
+-#, fuzzy
+ msgid "SASL mechanism needs more data"
+-msgstr "Mechanizmy SASL wymagaj± wiêcej danych"
++msgstr "Mechanizm SASL wymaga wiêcej danych"
+ 
+ msgid "Unknown SASL mechanism"
+ msgstr "Nieznany mechanizm SASL"
+@@ -92,7 +91,6 @@
+ "bibliotece SASL - najprawdopodobniej spowodowany brakiem odpowiedniego "
+ "klucza Kerberosa w /etc/krb5.keytab na serwerze."
+ 
+-#, fuzzy
+ msgid ""
+ "GSSAPI error creating a display name denoting the client in gss_display_name"
+ "() in SASL library.  This is probably because the client supplied bad data."
+@@ -111,7 +109,6 @@
+ msgid "SASL mechanism could not parse input"
+ msgstr "Mechanizm SASL nie by³ w stanie przeanalizowaæ wej¶cia"
+ 
+-#, fuzzy
+ msgid "Error authenticating user"
+ msgstr "B³±d uwierzytelniania u¿ytkownika"
+ 
+@@ -165,9 +162,8 @@
  "Uwierzytelnienie nie powiod³o siê, poniewa¿ nie przekazano nazwy hosta."
  
  msgid "Could not prepare internationalized (non-ASCII) string."
 -msgstr ""
 +msgstr "Nie mo¿na utworzyæ umiêdzynarodowionego ³añcucha (nie ASCII)."
  
- msgid "SASL function need larger buffer (internal error)"
+-#, fuzzy
+ msgid "SASL function needs larger buffer (internal error)"
  msgstr "Funkcja SASL wymaga wiêkszego bufora (b³±d wewnêtrzny)"
+ 
