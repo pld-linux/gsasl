@@ -1,0 +1,234 @@
+--- libgsasl-0.0.7/lib/cram-md5.c.orig	2003-01-31 22:06:53.000000000 +0100
++++ libgsasl-0.0.7/lib/cram-md5.c	2003-08-03 11:40:50.000000000 +0200
+@@ -37,10 +37,10 @@
+     {
+       if (gcry_check_version (GCRYPT_VERSION) == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+-      if (gcry_control (GCRYCTL_DISABLE_SECMEM, NULL, 0) != GCRYERR_SUCCESS)
++      if (gcry_control (GCRYCTL_DISABLE_SECMEM, NULL, 0) != GPG_ERR_NO_ERROR)
+ 	return GSASL_GCRYPT_ERROR;
+       if (gcry_control (GCRYCTL_INITIALIZATION_FINISHED,
+-			NULL, 0) != GCRYERR_SUCCESS)
++			NULL, 0) != GPG_ERR_NO_ERROR)
+ 	return GSASL_GCRYPT_ERROR;
+     }
+ 
+@@ -127,8 +127,7 @@
+       if (cb_password == NULL)
+ 	return GSASL_NEED_CLIENT_PASSWORD_CALLBACK;
+ 
+-      md5h =
+-	gcry_md_open (GCRY_MD_MD5, GCRY_MD_FLAG_SECURE | GCRY_MD_FLAG_HMAC);
++      gcry_md_open (&md5h, GCRY_MD_MD5, GCRY_MD_FLAG_SECURE | GCRY_MD_FLAG_HMAC);
+       if (md5h == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+@@ -142,7 +141,7 @@
+ 	return GSASL_UNICODE_NORMALIZATION_ERROR;
+       res = gcry_md_setkey (md5h, tmp, strlen (tmp));
+       free (tmp);
+-      if (res != GCRYERR_SUCCESS)
++      if (res != GPG_ERR_NO_ERROR)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+       gcry_md_write (md5h, /*XXX*/ (unsigned char *) input, input_len);
+@@ -333,8 +332,7 @@
+       char *normkey;
+       int i;
+ 
+-      md5h =
+-	gcry_md_open (GCRY_MD_MD5, GCRY_MD_FLAG_SECURE | GCRY_MD_FLAG_HMAC);
++      gcry_md_open (&md5h, GCRY_MD_MD5, GCRY_MD_FLAG_SECURE | GCRY_MD_FLAG_HMAC);
+       if (md5h == NULL)
+ 	{
+ 	  res = GSASL_GCRYPT_ERROR;
+@@ -362,7 +360,7 @@
+ 
+       res = gcry_md_setkey (md5h, normkey, strlen (normkey));
+       free (normkey);
+-      if (res != GCRYERR_SUCCESS)
++      if (res != GPG_ERR_NO_ERROR)
+ 	{
+ 	  res = GSASL_GCRYPT_ERROR;
+ 	  goto done;
+--- libgsasl-0.0.7/lib/digest-md5.c.orig	2003-01-31 22:06:53.000000000 +0100
++++ libgsasl-0.0.7/lib/digest-md5.c	2003-08-03 11:43:25.000000000 +0200
+@@ -333,7 +333,7 @@
+ 
+   /* A1 */
+ 
+-  md5h = gcry_md_open (GCRY_MD_MD5, 0);
++  gcry_md_open (&md5h, GCRY_MD_MD5, 0);
+   if (md5h == NULL)
+     return GSASL_GCRYPT_ERROR;
+ 
+@@ -357,7 +357,7 @@
+       GCRY_MD_HD md5h2;
+       char *hash2;
+ 
+-      md5h2 = gcry_md_open (GCRY_MD_MD5, 0);
++      gcry_md_open (&md5h2, GCRY_MD_MD5, 0);
+       if (md5h2 == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+@@ -380,7 +380,7 @@
+       char *hash2;
+       int n;
+ 
+-      md5h2 = gcry_md_open (GCRY_MD_MD5, 0);
++      gcry_md_open (&md5h2, GCRY_MD_MD5, 0);
+       if (md5h2 == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+@@ -408,7 +408,7 @@
+       GCRY_MD_HD md5h2;
+       char *hash2;
+ 
+-      md5h2 = gcry_md_open (GCRY_MD_MD5, 0);
++      gcry_md_open (&md5h2, GCRY_MD_MD5, 0);
+       if (md5h2 == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+@@ -431,7 +431,7 @@
+       char *hash2;
+       int n;
+ 
+-      md5h2 = gcry_md_open (GCRY_MD_MD5, 0);
++      gcry_md_open (&md5h2, GCRY_MD_MD5, 0);
+       if (md5h2 == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+@@ -463,7 +463,7 @@
+ 
+   /* A2 */
+ 
+-  md5h = gcry_md_open (GCRY_MD_MD5, 0);
++  gcry_md_open (&md5h, GCRY_MD_MD5, 0);
+   if (md5h == NULL)
+     return GSASL_GCRYPT_ERROR;
+ 
+@@ -487,7 +487,7 @@
+ 
+   /* response_value */
+ 
+-  md5h = gcry_md_open (GCRY_MD_MD5, 0);
++  gcry_md_open (&md5h, GCRY_MD_MD5, 0);
+   if (md5h == NULL)
+     return GSASL_GCRYPT_ERROR;
+ 
+@@ -554,10 +554,10 @@
+     {
+       if (gcry_check_version (GCRYPT_VERSION) == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+-      if (gcry_control (GCRYCTL_DISABLE_SECMEM, NULL, 0) != GCRYERR_SUCCESS)
++      if (gcry_control (GCRYCTL_DISABLE_SECMEM, NULL, 0) != GPG_ERR_NO_ERROR)
+ 	return GSASL_GCRYPT_ERROR;
+       if (gcry_control (GCRYCTL_INITIALIZATION_FINISHED,
+-			NULL, 0) != GCRYERR_SUCCESS)
++			NULL, 0) != GPG_ERR_NO_ERROR)
+ 	return GSASL_GCRYPT_ERROR;
+     }
+ 
+@@ -1048,7 +1048,7 @@
+ 	  strcat (output, RESPONSE_PRE);
+ 	  outlen += strlen (RESPONSE_PRE);
+ 
+-	  md5h = gcry_md_open (GCRY_MD_MD5, 0);
++	  gcry_md_open (&md5h, GCRY_MD_MD5, 0);
+ 	  if (md5h == NULL)
+ 	    {
+ 	      res = GSASL_GCRYPT_ERROR;
+@@ -1078,7 +1078,7 @@
+ 	    }
+ 	  gcry_md_write (md5h, tmp, strlen (tmp));
+ 	  free (tmp);
+-	  if (res != GCRYERR_SUCCESS)
++	  if (res != GPG_ERR_NO_ERROR)
+ 	    {
+ 	      res = GSASL_GCRYPT_ERROR;
+ 	      goto done;
+@@ -1303,12 +1303,12 @@
+ 	  MAC_MSG_TYPE_LEN + MAC_SEQNUM_LEN > *output_len)
+ 	return GSASL_TOO_SMALL_BUFFER;
+ 
+-      md5h = gcry_md_open (GCRY_MD_MD5, GCRY_MD_FLAG_HMAC);
++      gcry_md_open (&md5h, GCRY_MD_MD5, GCRY_MD_FLAG_HMAC);
+       if (md5h == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+       res = gcry_md_setkey (md5h, state->kic, MD5LEN);
+-      if (res != GCRYERR_SUCCESS)
++      if (res != GPG_ERR_NO_ERROR)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+       tmp = htonl (state->sendseqnum);
+@@ -1382,12 +1382,12 @@
+ 
+       len -= MAC_HMAC_LEN + MAC_MSG_TYPE_LEN + MAC_SEQNUM_LEN;
+ 
+-      md5h = gcry_md_open (GCRY_MD_MD5, GCRY_MD_FLAG_HMAC);
++      gcry_md_open (&md5h, GCRY_MD_MD5, GCRY_MD_FLAG_HMAC);
+       if (md5h == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+       res = gcry_md_setkey (md5h, state->kis, MD5LEN);
+-      if (res != GCRYERR_SUCCESS)
++      if (res != GPG_ERR_NO_ERROR)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+       tmp = htonl (state->readseqnum);
+@@ -1994,7 +1994,7 @@
+ 		goto done;
+ 	      }
+ 
+-	    md5h = gcry_md_open (GCRY_MD_MD5, 0);
++	    gcry_md_open (&md5h, GCRY_MD_MD5, 0);
+ 	    if (md5h == NULL)
+ 	      {
+ 		res = GSASL_GCRYPT_ERROR;
+@@ -2142,12 +2142,12 @@
+ 	  MAC_MSG_TYPE_LEN + MAC_SEQNUM_LEN > *output_len)
+ 	return GSASL_TOO_SMALL_BUFFER;
+ 
+-      md5h = gcry_md_open (GCRY_MD_MD5, GCRY_MD_FLAG_HMAC);
++      gcry_md_open (&md5h, GCRY_MD_MD5, GCRY_MD_FLAG_HMAC);
+       if (md5h == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+       res = gcry_md_setkey (md5h, state->kis, MD5LEN);
+-      if (res != GCRYERR_SUCCESS)
++      if (res != GPG_ERR_NO_ERROR)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+       tmp = htonl (state->sendseqnum);
+@@ -2221,12 +2221,12 @@
+ 
+       len -= MAC_HMAC_LEN + MAC_MSG_TYPE_LEN + MAC_SEQNUM_LEN;
+ 
+-      md5h = gcry_md_open (GCRY_MD_MD5, GCRY_MD_FLAG_HMAC);
++      gcry_md_open (&md5h, GCRY_MD_MD5, GCRY_MD_FLAG_HMAC);
+       if (md5h == NULL)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+       res = gcry_md_setkey (md5h, state->kic, MD5LEN);
+-      if (res != GCRYERR_SUCCESS)
++      if (res != GPG_ERR_NO_ERROR)
+ 	return GSASL_GCRYPT_ERROR;
+ 
+       tmp = htonl (state->readseqnum);
+--- gsasl-0.0.8/configure.ac.orig	2003-10-10 21:16:53.000000000 +0200
++++ gsasl-0.0.8/configure.ac	2003-10-23 22:53:07.959159480 +0200
+@@ -135,13 +135,6 @@
+ if test "$have_gcrypt" = "yes"; then
+   save_LIBS=$LIBS
+   LIBS="$LIBS $LIBGCRYPT_LIBS"
+-  # libgcrypt in CVS has a very different API that we don't support,
+-  # and it defines this function.
+-  AC_CHECK_FUNC(gcry_md_is_secure, [have_gcrypt=no])
+-  LIBS=$save_LIBS
+-  if test "$have_gcrypt" = "no"; then
+-    AC_MSG_WARN([[Too recent libgcrypt found, not using it]])
+-  fi
+ fi
+ 
+ # CRAM-MD5

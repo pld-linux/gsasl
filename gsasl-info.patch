@@ -1,0 +1,39 @@
+--- libgsasl-0.0.7/doc/gsasl.texi.orig	2003-05-27 03:39:11.000000000 +0200
++++ libgsasl-0.0.7/doc/gsasl.texi	2003-08-03 11:47:52.000000000 +0200
+@@ -32,14 +32,14 @@
+ @end quotation
+ @end copying
+ 
+-@dircategory GNU Libraries
++@dircategory Libraries:
+ @direntry
+-* libgsasl: (gsasl).	Simple Authentication and Security Layer Library.
++* libgsasl: (gsasl).			Simple Authentication and Security Layer Library
+ @end direntry
+ 
+-@dircategory GNU utilities
++@dircategory Miscellaneous:
+ @direntry
+-* gsasl: (gsasl)Invoking gsasl.		Command line interface to GNU SASL.
++* gsasl: (gsasl)gsasl.			Command line interface to GNU SASL
+ @end direntry
+ 
+ @titlepage
+@@ -73,7 +73,7 @@
+ * Examples::                    Example code.
+ * Acknowledgements::            Whom to blame.
+ 
+-* Invoking gsasl::              Command line interface to the library.
++* gsasl::                       Command line interface to the library.
+ 
+ Appendices
+ 
+@@ -1209,7 +1209,7 @@
+ @c **********************************************************
+ @c ********************  Invoking gsasl  ********************
+ @c **********************************************************
+-@node Invoking gsasl
++@node gsasl
+ @chapter Invoking gsasl
+ 
+ @pindex gsasl
