@@ -7,17 +7,18 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	0.0.14
-Release:	2
+Version:	0.1.0
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	d62dcebe7e662440a27eb8048c138e1a
+# Source0-md5:	80adc6e32357595ecadc891be5331483
 Source1:	%{name}-pl.po
+Source2:	%{name}-lib-pl.po
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gsasl/
-BuildRequires:	autoconf >= 2.57
-BuildRequires:	automake >= 1.7
+BuildRequires:	autoconf >= 2.59
+BuildRequires:	automake >= 1.8
 BuildRequires:	gettext-devel >= 0.14.1
 %{?with_gss:BuildRequires:	gss-devel >= 0.0.0}
 BuildRequires:	gtk-doc >= 1.1
@@ -108,8 +109,10 @@ Statyczna biblioteka GNU SASL.
 %patch0 -p1
 
 cp -f %{SOURCE1} po/pl.po
+cp -f %{SOURCE2} lib/po/pl.po
 echo 'pl' >> po/LINGUAS
-rm -f po/stamp-po
+echo 'pl' >> lib/po/LINGUAS
+rm -f po/stamp-po lib/po/stamp-po
 
 # incompatible with ksh
 rm -f m4/libtool.m4
@@ -137,7 +140,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name}
+# libgsasl for lib, gsasl for app
+%find_lang %{name} --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
