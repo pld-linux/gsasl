@@ -7,20 +7,19 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	0.0.8
+Version:	0.0.9
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	eae923fe86e38e4822f6d9e2459fe7de
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-libgcrypt.patch
 URL:		http://www.gnu.org/software/gsasl/
-BuildRequires:	autoconf >= 2.50
+BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake
 BuildRequires:	gettext-devel >= 0.12.1
 %{?with_gss:BuildRequires:	gss-devel >= 0.0.0}
-BuildRequires:	gtk-doc >= 0.6
+BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	libgcrypt-devel >= 1.1.42
 BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.1}
@@ -78,7 +77,7 @@ Summary:	Header files for GNU SASL library
 Summary(pl):	Pliki nag³ówkowe biblioteki GNU SASL
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	gtk-doc-common
+#Requires:	gtk-doc-common
 %{?with_gss:Requires:	gss-devel >= 0.0.0}
 Requires:	libgcrypt-devel >= 1.1.42
 Requires:	libidn-devel >= 0.1.0
@@ -108,12 +107,15 @@ Statyczna biblioteka GNU SASL.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+
+# grrr, 2.59 not released yet
+# and they use some hacked version which is broken with pdksh, so we must rebuild
+%{__perl} -pi -e 's/(AC_PREREQ)\(2\.59\)/$1(2.58)/' configure.ac
 
 %build
 %{__gettextize}
 %{__libtoolize}
-%{__aclocal} -I gl/m4
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -160,7 +162,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gsasl.h
 %{_pkgconfigdir}/libgsasl.pc
 %{_mandir}/man3/*.3*
-%{_gtkdocdir}/gsasl
+# reference in HTML format is not installed now
+#%{_gtkdocdir}/gsasl
 
 %files static
 %defattr(644,root,root,755)
