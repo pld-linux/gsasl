@@ -7,12 +7,12 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	0.1.4
+Version:	0.2.1
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	d8a00db1b23bbe9f1d0d746c84e669e2
+# Source0-md5:	0468e26a3e799496d93fe02ed1105d1b
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gsasl/
@@ -23,12 +23,13 @@ BuildRequires:	gettext-devel >= 0.14.1
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	libgcrypt-devel >= 1.1.42
 BuildRequires:	libidn-devel >= 0.1.0
-%{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.1}
+%{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
 BuildRequires:	libtool >= 2:1.5
 # alternatively, krb5 or heimdal could be used for GSSAPI and KERBEROS_V5
 %{?with_krbv5:BuildRequires:	shishi-devel >= 0.0.0}
 BuildRequires:	texinfo
 Requires(post,postun):	/sbin/ldconfig
+%{?with_ntlm:Requires:	libntlm >= 0.3.5}
 Obsoletes:	libgsasl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -80,7 +81,7 @@ Requires:	%{name} = %{version}-%{release}
 %{?with_gss:Requires:	gss-devel >= 0.0.0}
 Requires:	libgcrypt-devel >= 1.1.42
 Requires:	libidn-devel >= 0.1.0
-%{?with_ntlm:Requires:	libntlm-devel >= 0.3.1}
+%{?with_ntlm:Requires:	libntlm-devel >= 0.3.5}
 %{?with_krbv5:Requires:	shishi-devel >= 0.0.0}
 Obsoletes:	libgsasl-devel
 
@@ -158,9 +159,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgsasl.so
 %{_libdir}/libgsasl.la
-%{_includedir}/gsasl.h
+%{_includedir}/gsasl*.h
 %{_pkgconfigdir}/libgsasl.pc
 %{_mandir}/man3/*.3*
+%{_gtkdocdir}/gsasl
 
 %files static
 %defattr(644,root,root,755)
