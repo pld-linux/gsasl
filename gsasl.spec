@@ -7,12 +7,12 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	0.1.2
+Version:	0.1.3
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	63a255db4326f88c2c8a894e30df8ed0
+# Source0-md5:	bd902e2a88e03720557d72c44131dee0
 Source1:	%{name}-pl.po
 Source2:	%{name}-lib-pl.po
 Patch0:		%{name}-info.patch
@@ -77,7 +77,7 @@ u¿ytkownik jest autoryzowany.
 Summary:	Header files for GNU SASL library
 Summary(pl):	Pliki nag³ówkowe biblioteki GNU SASL
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 %{?with_gss:Requires:	gss-devel >= 0.0.0}
 Requires:	libgcrypt-devel >= 1.1.42
 Requires:	libidn-devel >= 0.1.0
@@ -95,7 +95,7 @@ Pliki nag³ówkowe biblioteki GNU SASL.
 Summary:	Static GNU SASL library
 Summary(pl):	Statyczna biblioteka GNU SASL
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	libgsasl-static
 
 %description static
