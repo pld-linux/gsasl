@@ -12,7 +12,7 @@ Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	eae923fe86e38e4822f6d9e2459fe7de
+# Source0-md5:	b9182aaef777fbd244b9469519f1a545
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.58
