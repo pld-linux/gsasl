@@ -7,23 +7,23 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	0.0.10
+Version:	0.0.11
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	82cbcdb210e911f77ae82cf91ceee088
+# Source0-md5:	aa28809fa60447bb2e616ac8c7e3085a
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gsasl/
-BuildRequires:	autoconf >= 2.58
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.57
+BuildRequires:	automake >= 1.7
 BuildRequires:	gettext-devel >= 0.12.1
 %{?with_gss:BuildRequires:	gss-devel >= 0.0.0}
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	libgcrypt-devel >= 1.1.42
 BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.1}
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:1.5
 # alternatively, krb5 or heimdal could be used for GSSAPI and KERBEROS_V5
 %{?with_krbv5:BuildRequires:	shishi-devel >= 0.0.0}
 BuildRequires:	texinfo
@@ -76,7 +76,6 @@ Summary:	Header files for GNU SASL library
 Summary(pl):	Pliki nag³ówkowe biblioteki GNU SASL
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-#Requires:	gtk-doc-common
 %{?with_gss:Requires:	gss-devel >= 0.0.0}
 Requires:	libgcrypt-devel >= 1.1.42
 Requires:	libidn-devel >= 0.1.0
@@ -107,11 +106,11 @@ Statyczna biblioteka GNU SASL.
 %setup -q
 %patch0 -p1
 
-# grrr, 2.59 not released yet
-# and they use some hacked version which is broken with pdksh, so we must rebuild
-%{__perl} -pi -e 's/(AC_PREREQ)\(2\.59\)/$1(2.58)/' configure.ac
+# incompatible with ksh
+rm -f m4/libtool.m4
 
 %build
+# blegh, lt incompatible with ksh - must rebuild
 %{__gettextize}
 %{__libtoolize}
 %{__aclocal} -I m4
@@ -148,7 +147,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc ANNOUNCE AUTHORS ChangeLog NEWS README* THANKS
+%doc AUTHORS ChangeLog NEWS README* THANKS
 %attr(755,root,root) %{_bindir}/gsasl
 %attr(755,root,root) %{_libdir}/libgsasl.so.*.*.*
 %{_mandir}/man1/gsasl.1*
@@ -161,8 +160,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gsasl.h
 %{_pkgconfigdir}/libgsasl.pc
 %{_mandir}/man3/*.3*
-# reference in HTML format is not installed now
-#%{_gtkdocdir}/gsasl
 
 %files static
 %defattr(644,root,root,755)
