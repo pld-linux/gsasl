@@ -8,16 +8,17 @@ Summary:	GNU SASL - implementation of the Simple Authentication and Security Lay
 Summary(pl):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
 Version:	0.0.14
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	d62dcebe7e662440a27eb8048c138e1a
+Source1:	%{name}-pl.po
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake >= 1.7
-BuildRequires:	gettext-devel >= 0.12.1
+BuildRequires:	gettext-devel >= 0.14.1
 %{?with_gss:BuildRequires:	gss-devel >= 0.0.0}
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	libgcrypt-devel >= 1.1.42
@@ -105,6 +106,10 @@ Statyczna biblioteka GNU SASL.
 %prep
 %setup -q
 %patch0 -p1
+
+cp -f %{SOURCE1} po/pl.po
+echo 'pl' >> po/LINGUAS
+rm -f po/stamp-po
 
 # incompatible with ksh
 rm -f m4/libtool.m4
