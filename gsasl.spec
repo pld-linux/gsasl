@@ -17,7 +17,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.59
-BuildRequires:	automake >= 1.9
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel >= 0.14.1
 %{?with_gss:BuildRequires:	gss-devel >= 0.0.0}
 BuildRequires:	gtk-doc >= 1.1
