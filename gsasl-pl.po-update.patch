@@ -1,0 +1,11 @@
+--- gsasl-0.2.3/lib/po/pl.po.orig	2004-12-15 19:35:27.000000000 +0100
++++ gsasl-0.2.3/lib/po/pl.po	2004-12-23 00:03:33.835944736 +0100
+@@ -174,7 +174,7 @@
+ "Uwierzytelnienie nie powiod³o siê, poniewa¿ nie przekazano nazwy hosta."
+ 
+ msgid "Could not prepare internationalized (non-ASCII) string."
+-msgstr ""
++msgstr "Nie mo¿na utworzyæ umiêdzynarodowionego ³añcucha (nie ASCII)."
+ 
+ msgid "SASL function need larger buffer (internal error)"
+ msgstr "Funkcja SASL wymaga wiêkszego bufora (b³±d wewnêtrzny)"
