@@ -1,5 +1,5 @@
---- gsasl-0.2.5/po/pl.po.orig	2005-02-08 12:37:33.000000000 +0100
-+++ gsasl-0.2.5/po/pl.po	2005-02-12 21:04:08.028637440 +0100
+--- gsasl-0.2.6/po/pl.po.orig	2005-08-10 13:04:43.000000000 +0200
++++ gsasl-0.2.6/po/pl.po	2005-08-13 19:27:33.476737256 +0200
 @@ -1,21 +1,21 @@
  # Polish translation for gsasl.
 -# Copyright (C) 2004 Free Software Foundation, Inc.
@@ -13,9 +13,9 @@
 -"Project-Id-Version: gsasl 0.1.4\n"
 +"Project-Id-Version: gsasl 0.2.5\n"
  "Report-Msgid-Bugs-To: bug-gsasl@gnu.org\n"
- "POT-Creation-Date: 2005-02-08 12:37+0100\n"
+ "POT-Creation-Date: 2005-08-10 12:46+0200\n"
 -"PO-Revision-Date: 2004-08-25 22:41+0200\n"
-+"PO-Revision-Date: 2005-02-12 21:01+0100\n"
++"PO-Revision-Date: 2005-08-13 19:20+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
@@ -27,8 +27,8 @@
  msgid "Choose SASL mechanism:\n"
  msgstr "Wybór mechanizmów SASL:\n"
  
---- gsasl-0.2.5/lib/po/pl.po.orig	2005-02-08 12:37:37.000000000 +0100
-+++ gsasl-0.2.5/lib/po/pl.po	2005-02-12 21:03:41.134725936 +0100
+--- gsasl-0.2.6/lib/po/pl.po.orig	2005-08-10 13:04:50.000000000 +0200
++++ gsasl-0.2.6/lib/po/pl.po	2005-08-13 19:28:08.191459816 +0200
 @@ -1,14 +1,14 @@
  # Polish translation for libgsasl.
 -# Copyright (C) 2004 Free Software Foundation, Inc.
@@ -40,11 +40,11 @@
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgsasl 0.2.1\n"
-+"Project-Id-Version: libgsasl 0.2.5\n"
++"Project-Id-Version: libgsasl 0.2.3\n"
  "Report-Msgid-Bugs-To: bug-gsasl@gnu.org\n"
- "POT-Creation-Date: 2005-02-08 12:37+0100\n"
+ "POT-Creation-Date: 2005-08-10 12:46+0200\n"
 -"PO-Revision-Date: 2004-11-21 23:31+0100\n"
-+"PO-Revision-Date: 2005-02-12 21:01+0100\n"
++"PO-Revision-Date: 2005-08-13 19:20+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
