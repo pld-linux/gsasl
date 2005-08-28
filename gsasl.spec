@@ -7,12 +7,12 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	0.2.6
+Version:	0.2.7
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	5e527147cea5cc776240f6d7a6820955
+# Source0-md5:	ed52f2e5ac997503d0953be978e7a2f1
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gsasl/
