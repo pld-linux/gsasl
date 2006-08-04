@@ -115,6 +115,13 @@ Statyczna biblioteka GNU SASL.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+cd lib
+%{__libtoolize}
+%{__aclocal} -I m4 -I gl/m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd -
 %configure \
 	--enable-gtk-doc \
 	%{!?with_gss:--disable-gssapi} \
