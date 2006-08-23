@@ -7,18 +7,18 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	0.2.7
-Release:	2
+Version:	0.2.15
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	ed52f2e5ac997503d0953be978e7a2f1
+# Source0-md5:	906954c002098370c161ac2c97c4c33e
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel >= 0.14.1
+BuildRequires:	gnutls-devel >= 1.2.0
 %{?with_gss:BuildRequires:	gss-devel >= 0.0.0}
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	libgcrypt-devel >= 1.1.42
@@ -107,9 +107,6 @@ Statyczna biblioteka GNU SASL.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-
-rm -f lib/po/stamp-po
 
 %build
 %{__gettextize}
@@ -118,6 +115,13 @@ rm -f lib/po/stamp-po
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+cd lib
+%{__libtoolize}
+%{__aclocal} -I m4 -I gl/m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd -
 %configure \
 	--enable-gtk-doc \
 	%{!?with_gss:--disable-gssapi} \
@@ -136,6 +140,8 @@ rm -rf $RPM_BUILD_ROOT
 
 # libgsasl for lib, gsasl for app
 %find_lang %{name} --all-name
+
+rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 %clean
 rm -rf $RPM_BUILD_ROOT
