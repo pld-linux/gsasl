@@ -141,6 +141,8 @@ rm -rf $RPM_BUILD_ROOT
 # libgsasl for lib, gsasl for app
 %find_lang %{name} --all-name
 
+rm -f $RPM_BUILD_ROOT%{_infodir}/dir
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
