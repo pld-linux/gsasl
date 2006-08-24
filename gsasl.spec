@@ -1,8 +1,9 @@
 #
 # Conditional build:
-%bcond_without	gss	# without GSSAPI mechanism
-%bcond_without	krbv5	# without KERBEROS_V5 mechanism
-%bcond_without	ntlm	# without NTLM mechanism
+%bcond_without	gss		# without GSSAPI mechanism
+%bcond_without	krbv5		# without KERBEROS_V5 mechanism
+%bcond_without	ntlm		# without NTLM mechanism
+%bcond_without	static_libs	# don't build static libraries
 #
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl):	GNU SASL - implementacja Simple Authentication and Security Layer
@@ -25,6 +26,7 @@ BuildRequires:	libgcrypt-devel >= 1.1.42
 BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
 BuildRequires:	libtool >= 2:1.5
+BuildRequires:	pkgconfig
 # alternatively, krb5 or heimdal could be used for GSSAPI and KERBEROS_V5
 %{?with_krbv5:BuildRequires:	shishi-devel >= 0.0.0}
 BuildRequires:	texinfo
@@ -127,6 +129,7 @@ cd -
 	%{!?with_gss:--disable-gssapi} \
 	%{!?with_krbv5:--disable-kerberos_v5} \
 	%{!?with_ntlm:--disable-ntlm} \
+	%{!?with_static_libs:--disable-static} \
 	--with-html-dir=%{_gtkdocdir} \
 	--with-libgcrypt
 
@@ -171,6 +174,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*.3*
 %{_gtkdocdir}/gsasl
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgsasl.a
+%endif
