@@ -6,7 +6,7 @@
 %bcond_without	static_libs	# don't build static libraries
 #
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
-Summary(pl):	GNU SASL - implementacja Simple Authentication and Security Layer
+Summary(pl.UTF-8):   GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
 Version:	0.2.15
 Release:	1
@@ -54,30 +54,30 @@ library is flexible with regards to the authorization infrastructure
 used, as it utilizes callbacks into the application to decide whether
 an user is authorized or not.
 
-%description -l pl
+%description -l pl.UTF-8
 GNU SASL to implementacja szkieletu Simple Authentication and Security
-Layer (prostej warstwy uwierzytelniania i bezpieczeÒstwa) oraz kilku
-popularnych mechanizmÛw SASL. SASL jest uøywane przez serwery sieciowe
-(np. IMAP i SMTP) do ø±dania uwierzytelnienia od klientÛw oraz w
-klientach do uwierzytelniania wzglÍdem serwerÛw.
+Layer (prostej warstwy uwierzytelniania i bezpiecze≈Ñstwa) oraz kilku
+popularnych mechanizm√≥w SASL. SASL jest u≈ºywane przez serwery sieciowe
+(np. IMAP i SMTP) do ≈ºƒÖdania uwierzytelnienia od klient√≥w oraz w
+klientach do uwierzytelniania wzglƒôdem serwer√≥w.
 
-GNU SASL zawiera bibliotekÍ (libgsasl), narzÍdzie dzia≥aj±ce z linii
-poleceÒ (gsasl) pozwalaj±ce na korzystanie z biblioteki z poziomu
-pow≥oki oraz dokumentacjÍ. Biblioteka ma obs≥ugÍ szkieletu SASL (z
-funkcjami uwierzytelniaj±cymi oraz zapewniaj±cymi prywatno∂Ê i
-spÛjno∂Ê danych aplikacji) oraz przynajmniej czÍ∂ciow± obs≥ugÍ
-mechanizmÛw CRAM-MD5, EXTERNAL, GSSAPI, ANONYMOUS, PLAIN, SECURID,
+GNU SASL zawiera bibliotekƒô (libgsasl), narzƒôdzie dzia≈ÇajƒÖce z linii
+polece≈Ñ (gsasl) pozwalajƒÖce na korzystanie z biblioteki z poziomu
+pow≈Çoki oraz dokumentacjƒô. Biblioteka ma obs≈Çugƒô szkieletu SASL (z
+funkcjami uwierzytelniajƒÖcymi oraz zapewniajƒÖcymi prywatno≈õƒá i
+sp√≥jno≈õƒá danych aplikacji) oraz przynajmniej czƒô≈õciowƒÖ obs≈Çugƒô
+mechanizm√≥w CRAM-MD5, EXTERNAL, GSSAPI, ANONYMOUS, PLAIN, SECURID,
 DIGEST-MD5, LOGIN, NTLM oraz KERBEROS_V5.
 
-Biblioteka jest przeno∂na, poniewaø sama nie korzysta z komunikacji
-sieciowej, pozostawiaj±c to wywo≥uj±cej j± aplikacji. Biblioteka jest
-elastyczna ze wzglÍdu na uøywan± infrastrukturÍ uwierzytelniania,
-poniewaø korzysta z callbackÛw w aplikacji przy decydowaniu, czy
-uøytkownik jest autoryzowany.
+Biblioteka jest przeno≈õna, poniewa≈º sama nie korzysta z komunikacji
+sieciowej, pozostawiajƒÖc to wywo≈ÇujƒÖcej jƒÖ aplikacji. Biblioteka jest
+elastyczna ze wzglƒôdu na u≈ºywanƒÖ infrastrukturƒô uwierzytelniania,
+poniewa≈º korzysta z callback√≥w w aplikacji przy decydowaniu, czy
+u≈ºytkownik jest autoryzowany.
 
 %package devel
 Summary:	Header files for GNU SASL library
-Summary(pl):	Pliki nag≥Ûwkowe biblioteki GNU SASL
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe biblioteki GNU SASL
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gss:Requires:	gss-devel >= 0.0.0}
@@ -90,12 +90,12 @@ Obsoletes:	libgsasl-devel
 %description devel
 Header files for GNU SASL library.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe biblioteki GNU SASL.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe biblioteki GNU SASL.
 
 %package static
 Summary:	Static GNU SASL library
-Summary(pl):	Statyczna biblioteka GNU SASL
+Summary(pl.UTF-8):   Statyczna biblioteka GNU SASL
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	libgsasl-static
@@ -103,7 +103,7 @@ Obsoletes:	libgsasl-static
 %description static
 Static GNU SASL library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka GNU SASL.
 
 %prep
