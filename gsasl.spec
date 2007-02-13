@@ -6,7 +6,7 @@
 %bcond_without	static_libs	# don't build static libraries
 #
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
-Summary(pl.UTF-8):   GNU SASL - implementacja Simple Authentication and Security Layer
+Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
 Version:	0.2.15
 Release:	1
@@ -77,7 +77,7 @@ użytkownik jest autoryzowany.
 
 %package devel
 Summary:	Header files for GNU SASL library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki GNU SASL
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GNU SASL
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gss:Requires:	gss-devel >= 0.0.0}
@@ -95,7 +95,7 @@ Pliki nagłówkowe biblioteki GNU SASL.
 
 %package static
 Summary:	Static GNU SASL library
-Summary(pl.UTF-8):   Statyczna biblioteka GNU SASL
+Summary(pl.UTF-8):	Statyczna biblioteka GNU SASL
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	libgsasl-static
