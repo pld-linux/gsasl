@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	gss		# without GSSAPI mechanism
-%bcond_without	krbv5		# without KERBEROS_V5 mechanism
+%bcond_without	kerberos5	# without KERBEROS_V5 mechanism
 %bcond_without	ntlm		# without NTLM mechanism
 %bcond_without	static_libs	# don't build static libraries
 #
@@ -9,7 +9,7 @@ Summary:	GNU SASL - implementation of the Simple Authentication and Security Lay
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
 Version:	0.2.15
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
@@ -27,8 +27,8 @@ BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	pkgconfig
-# alternatively, krb5 or heimdal could be used for GSSAPI and KERBEROS_V5
-%{?with_krbv5:BuildRequires:	shishi-devel >= 0.0.0}
+# alternatively, shishi or heimdal could be used for GSSAPI and KERBEROS_V5
+%{?with_kerberos5:BuildRequires:	krb5-devel}
 BuildRequires:	texinfo
 Requires(post,postun):	/sbin/ldconfig
 %{?with_ntlm:Requires:	libntlm >= 0.3.5}
@@ -84,7 +84,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	libgcrypt-devel >= 1.1.42
 Requires:	libidn-devel >= 0.1.0
 %{?with_ntlm:Requires:	libntlm-devel >= 0.3.5}
-%{?with_krbv5:Requires:	shishi-devel >= 0.0.0}
+%{?with_kerberos5:Requires:	krb5-devel}
 Obsoletes:	libgsasl-devel
 
 %description devel
@@ -127,7 +127,7 @@ cd -
 %configure \
 	--enable-gtk-doc \
 	%{!?with_gss:--disable-gssapi} \
-	%{!?with_krbv5:--disable-kerberos_v5} \
+	%{!?with_kerberos5:--disable-kerberos_v5} \
 	%{!?with_ntlm:--disable-ntlm} \
 	%{!?with_static_libs:--disable-static} \
 	--with-html-dir=%{_gtkdocdir} \
