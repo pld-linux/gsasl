@@ -1,24 +1,25 @@
 #
 # Conditional build:
-%bcond_without	gss		# without GSSAPI mechanism
-%bcond_without	kerberos5	# without KERBEROS_V5 mechanism
+%bcond_with	gss		# use gss instead of MIT as GSSAPI implementation
+%bcond_with	kerberos5	# with KERBEROS_V5 mechanism (based on shishi, currently broken)
 %bcond_without	ntlm		# without NTLM mechanism
 %bcond_without	static_libs	# don't build static libraries
 #
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	0.2.15
-Release:	2
+Version:	0.2.16
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	906954c002098370c161ac2c97c4c33e
+# Source0-md5:	eb23cc53c7a176fa39c1c9ec7257b018
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gsasl/
-BuildRequires:	autoconf >= 2.60
-BuildRequires:	automake >= 1:1.9
-BuildRequires:	gettext-devel >= 0.14.1
+BuildRequires:	autoconf >= 2.61
+BuildRequires:	automake >= 1:1.10
+BuildRequires:	gettext-devel >= 0.16.1
 BuildRequires:	gnutls-devel >= 1.2.0
 %{?with_gss:BuildRequires:	gss-devel >= 0.0.0}
 BuildRequires:	gtk-doc >= 1.1
@@ -27,8 +28,9 @@ BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	pkgconfig
-# alternatively, shishi or heimdal could be used for GSSAPI and KERBEROS_V5
-%{?with_kerberos5:BuildRequires:	krb5-devel}
+# alternatively, gss or heimdal can be used for GSSAPI
+%{!?with_gss:BuildRequires:	krb5-devel}
+%{?with_kerberos5:BuildRequires:	shishi-devel}
 BuildRequires:	texinfo
 Requires(post,postun):	/sbin/ldconfig
 %{?with_ntlm:Requires:	libntlm >= 0.3.5}
@@ -84,7 +86,8 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	libgcrypt-devel >= 1.1.42
 Requires:	libidn-devel >= 0.1.0
 %{?with_ntlm:Requires:	libntlm-devel >= 0.3.5}
-%{?with_kerberos5:Requires:	krb5-devel}
+%{!?with_gss:Requires:	krb5-devel}
+%{?with_kerberos5:Requires:	shishi-devel}
 Obsoletes:	libgsasl-devel
 
 %description devel
@@ -109,6 +112,9 @@ Statyczna biblioteka GNU SASL.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+
+rm -f lib/po/stamp-po
 
 %build
 %{__gettextize}
@@ -126,10 +132,10 @@ cd lib
 cd -
 %configure \
 	--enable-gtk-doc \
-	%{!?with_gss:--disable-gssapi} \
-	%{!?with_kerberos5:--disable-kerberos_v5} \
 	%{!?with_ntlm:--disable-ntlm} \
 	%{!?with_static_libs:--disable-static} \
+	%{?with_kerberos5:--enable-kerberos_v5} \
+	%{!?with_gss:--with-gssapi-impl=mit} \
 	--with-html-dir=%{_gtkdocdir} \
 	--with-libgcrypt
 
