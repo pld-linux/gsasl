@@ -1,0 +1,36 @@
+--- gsasl-0.2.16/lib/po/pl.po.orig	2007-04-20 15:15:31.000000000 +0200
++++ gsasl-0.2.16/lib/po/pl.po	2007-04-25 22:58:25.642253988 +0200
+@@ -1,14 +1,14 @@
+ # Polish translation for libgsasl.
+ # Copyright (C) 2004, 2005 Free Software Foundation, Inc.
+ # This file is distributed under the same license as the libgsasl package.
+-# Jakub Bogusz <qboosh@pld-linux.org>, 2004-2005.
++# Jakub Bogusz <qboosh@pld-linux.org>, 2004-2007.
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: libgsasl 0.2.8-b20050829\n"
++"Project-Id-Version: libgsasl 0.2.16\n"
+ "Report-Msgid-Bugs-To: bug-gsasl@gnu.org\n"
+ "POT-Creation-Date: 2007-04-20 15:15+0200\n"
+-"PO-Revision-Date: 2005-09-12 17:54+0200\n"
++"PO-Revision-Date: 2007-04-25 22:52+0200\n"
+ "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
+ "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+ "MIME-Version: 1.0\n"
+@@ -43,14 +43,12 @@
+ "Biblioteka GSSAPI nie mog³a zwolniæ pamiêci w gss_release_buffer() w "
+ "bibliotece SASL. To jest powa¿ny b³±d wewnêtrzny."
+ 
+-#, fuzzy
+ msgid ""
+ "GSSAPI library could not understand a peer name in gss_import_name() in SASL "
+ "library.  This is most likely due to incorrect service and/or hostnames."
+ msgstr ""
+ "Biblioteka GSSAPI nie zrozumia³a nazwy partnera w gss_import_name() w "
+-"bibliotece SASL. Mo¿e byæ to spowodowane b³êdnie podanymi przez u¿ytkownika "
+-"danymi."
++"bibliotece SASL. Najprawdopodobniej jest to spowodowane b³êdnymi nazwami us³ug i/lub hostów."
+ 
+ msgid ""
+ "GSSAPI error in client while negotiating security context in "
