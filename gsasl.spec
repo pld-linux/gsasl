@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security L
 Name:		gsasl
 Version:	0.2.19
 Release:	1
-License:	GPL
+License:	LGPL v2.1+ (library), GPL v3+ (gsasl tool)
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	670359bf16126a114a68991a6682e7d0
@@ -79,6 +79,7 @@ użytkownik jest autoryzowany.
 %package devel
 Summary:	Header files for GNU SASL library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GNU SASL
+License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gss:Requires:	gss-devel >= 0.0.0}
@@ -98,6 +99,7 @@ Pliki nagłówkowe biblioteki GNU SASL.
 %package static
 Summary:	Static GNU SASL library
 Summary(pl.UTF-8):	Statyczna biblioteka GNU SASL
+License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	libgsasl-static
