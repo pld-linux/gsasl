@@ -166,8 +166,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README* THANKS
 %attr(755,root,root) %{_bindir}/gsasl
 %attr(755,root,root) %{_libdir}/libgsasl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgsasl.so.7
 %{_mandir}/man1/gsasl.1*
-%{_infodir}/*.info*
+%{_infodir}/gsasl.info*
 
 %files devel
 %defattr(644,root,root,755)
@@ -175,7 +176,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgsasl.la
 %{_includedir}/gsasl*.h
 %{_pkgconfigdir}/libgsasl.pc
-%{_mandir}/man3/*.3*
+%{_mandir}/man3/gsasl_*.3*
 %{_gtkdocdir}/gsasl
 
 %if %{with static_libs}
