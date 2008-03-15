@@ -1,5 +1,5 @@
---- gsasl-0.2.24/po/pl.po.orig	2008-01-15 13:08:49.000000000 +0100
-+++ gsasl-0.2.24/po/pl.po	2008-01-23 07:19:19.844605695 +0100
+--- gsasl-0.2.25/po/pl.po.orig	2008-03-10 17:17:29.000000000 +0100
++++ gsasl-0.2.25/po/pl.po	2008-03-15 19:05:37.256597484 +0100
 @@ -1,14 +1,14 @@
  # Polish translation for gsasl.
  # Copyright (C) 2004, 2005, 2006 Free Software Foundation, Inc.
@@ -10,11 +10,11 @@
  msgid ""
  msgstr ""
 -"Project-Id-Version: gsasl 0.2.15\n"
-+"Project-Id-Version: gsasl 0.2.24\n"
++"Project-Id-Version: gsasl 0.2.25\n"
  "Report-Msgid-Bugs-To: bug-gsasl@gnu.org\n"
- "POT-Creation-Date: 2008-01-15 13:08+0100\n"
+ "POT-Creation-Date: 2008-03-10 17:17+0100\n"
 -"PO-Revision-Date: 2006-08-24 18:20+0200\n"
-+"PO-Revision-Date: 2008-01-23 07:12+0100\n"
++"PO-Revision-Date: 2008-03-15 19:01+0100\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
