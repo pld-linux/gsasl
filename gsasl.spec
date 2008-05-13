@@ -15,6 +15,7 @@ Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	1debd9f67068ffbf73fa6ca4e4e2ffd4
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10
@@ -114,8 +115,9 @@ Statyczna biblioteka GNU SASL.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
-rm -f m4/{libtool.m4,lt*} lib/m4/{libtool.m4,lt*}
+rm -f po/stamp-po
 
 %build
 %{__gettextize}
