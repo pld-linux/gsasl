@@ -8,14 +8,13 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	0.2.25
-Release:	2
+Version:	0.2.26
+Release:	1
 License:	LGPL v2.1+ (library), GPL v3+ (gsasl tool)
 Group:		Libraries
 Source0:	http://josefsson.org/gsasl/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	a7e52085a745a6c211b6618a86ad669d
+# Source0-md5:	1debd9f67068ffbf73fa6ca4e4e2ffd4
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10
@@ -23,7 +22,7 @@ BuildRequires:	gettext-devel >= 0.16.1
 BuildRequires:	gnutls-devel >= 1.2.0
 %{?with_gss:BuildRequires:	gss-devel >= 0.0.0}
 BuildRequires:	gtk-doc >= 1.1
-BuildRequires:	libgcrypt-devel >= 1.1.42
+BuildRequires:	libgcrypt-devel >= 1.3.0
 BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
 BuildRequires:	libtool >= 2:1.5
@@ -114,7 +113,6 @@ Statyczna biblioteka GNU SASL.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 rm -f m4/{libtool.m4,lt*} lib/m4/{libtool.m4,lt*}
 
