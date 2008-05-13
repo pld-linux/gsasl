@@ -32,6 +32,7 @@ BuildRequires:	pkgconfig
 %{?with_kerberos5:BuildRequires:	shishi-devel}
 BuildRequires:	texinfo
 Requires(post,postun):	/sbin/ldconfig
+Requires:	libgcrypt >= 1.3.0
 %{?with_ntlm:Requires:	libntlm >= 0.3.5}
 Obsoletes:	libgsasl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -83,7 +84,7 @@ License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gss:Requires:	gss-devel >= 0.0.0}
-Requires:	libgcrypt-devel >= 1.1.42
+Requires:	libgcrypt-devel >= 1.3.0
 Requires:	libidn-devel >= 0.1.0
 %{?with_ntlm:Requires:	libntlm-devel >= 0.3.5}
 %{!?with_gss:Requires:	krb5-devel}
