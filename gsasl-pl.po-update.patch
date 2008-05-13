@@ -1,0 +1,39 @@
+--- gsasl-0.2.26/po/pl.po.orig	2008-05-05 16:25:42.000000000 +0200
++++ gsasl-0.2.26/po/pl.po	2008-05-13 19:10:47.249392601 +0200
+@@ -1,14 +1,14 @@
+ # Polish translation for gsasl.
+-# Copyright (C) 2004, 2005, 2006 Free Software Foundation, Inc.
++# Copyright (C) 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
+ # This file is distributed under the same license as the gsasl package.
+-# Jakub Bogusz <qboosh@pld-linux.org>, 2004-2006.
++# Jakub Bogusz <qboosh@pld-linux.org>, 2004-2008.
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: gsasl 0.2.15\n"
++"Project-Id-Version: gsasl 0.2.26\n"
+ "Report-Msgid-Bugs-To: bug-gsasl@gnu.org\n"
+ "POT-Creation-Date: 2008-05-05 16:25+0200\n"
+-"PO-Revision-Date: 2006-08-24 18:20+0200\n"
++"PO-Revision-Date: 2008-05-05 21:30+0200\n"
+ "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
+ "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+ "MIME-Version: 1.0\n"
+@@ -50,13 +50,13 @@
+ "\n"
+ "Report bugs to <%s>.\n"
+ msgstr ""
++"\n"
++"Prosimy zg³aszaæ b³êdy na adres <%s>.\n"
+ 
+ #: src/gsasl.c:280
+-#, fuzzy, c-format
++#, c-format
+ msgid "Try `%s --help' for more information.\n"
+-msgstr ""
+-"brak argumentu\n"
+-"`%s --help' poda wiêcej informacji."
++msgstr "Polecenie `%s --help' pozwoli uzyskaæ wiêcej informacji.\n"
+ 
+ #: src/gsasl.c:320
+ #, c-format
