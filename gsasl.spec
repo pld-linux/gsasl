@@ -1,5 +1,6 @@
 #
 # Conditional build:
+%bcond_without	apidocs		# disable gtk-doc
 %bcond_with	gss		# use gss instead of MIT as GSSAPI implementation
 %bcond_with	kerberos5	# with KERBEROS_V5 mechanism (based on shishi, currently broken)
 %bcond_without	ntlm		# without NTLM mechanism
@@ -22,7 +23,7 @@ BuildRequires:	automake >= 1:1.10
 BuildRequires:	gettext-devel >= 0.16.1
 BuildRequires:	gnutls-devel >= 1.2.0
 %{?with_gss:BuildRequires:	gss-devel >= 0.0.0}
-BuildRequires:	gtk-doc >= 1.1
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.1}
 BuildRequires:	libgcrypt-devel >= 1.3.0
 BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
@@ -134,7 +135,7 @@ cd lib
 %{__automake}
 cd -
 %configure \
-	--enable-gtk-doc \
+	%{?with_apidocs:--enable-gtk-doc} \
 	%{!?with_ntlm:--disable-ntlm} \
 	%{!?with_static_libs:--disable-static} \
 	%{?with_kerberos5:--enable-kerberos_v5} \
@@ -182,7 +183,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gsasl*.h
 %{_pkgconfigdir}/libgsasl.pc
 %{_mandir}/man3/gsasl_*.3*
-%{_gtkdocdir}/gsasl
+%{?with_apidocs:%{_gtkdocdir}/gsasl}
 
 %if %{with static_libs}
 %files static
