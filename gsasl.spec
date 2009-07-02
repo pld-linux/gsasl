@@ -10,7 +10,7 @@ Summary:	GNU SASL - implementation of the Simple Authentication and Security Lay
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
 Version:	1.1
-Release:	1
+Release:	2
 License:	LGPL v2.1+ (library), GPL v3+ (gsasl tool)
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gsasl/%{name}-%{version}.tar.gz
@@ -28,8 +28,8 @@ BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	pkgconfig
-# alternatively, gss or heimdal can be used for GSSAPI
-%{!?with_gss:BuildRequires:	krb5-devel}
+# alternatively, gss or krb5 can be used for GSSAPI
+%{!?with_gss:BuildRequires:	heimdal-devel}
 %{?with_kerberos5:BuildRequires:	shishi-devel}
 BuildRequires:	texinfo
 Requires(post,postun):	/sbin/ldconfig
@@ -88,7 +88,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	libgcrypt-devel >= 1.3.0
 Requires:	libidn-devel >= 0.1.0
 %{?with_ntlm:Requires:	libntlm-devel >= 0.3.5}
-%{!?with_gss:Requires:	krb5-devel}
+%{!?with_gss:Requires:	heimdal-devel}
 %{?with_kerberos5:Requires:	shishi-devel}
 Obsoletes:	libgsasl-devel
 
