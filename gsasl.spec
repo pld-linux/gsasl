@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
-%bcond_with	gss		# use gss instead of MIT as GSSAPI implementation
+%bcond_with	gss		# use gss instead of Heimdal as GSSAPI implementation
 %bcond_with	kerberos5	# with KERBEROS_V5 mechanism (based on shishi, currently broken)
 %bcond_without	ntlm		# without NTLM mechanism
 %bcond_without	static_libs	# don't build static libraries
@@ -137,7 +137,7 @@ cd -
 	%{!?with_ntlm:--disable-ntlm} \
 	%{!?with_static_libs:--disable-static} \
 	%{?with_kerberos5:--enable-kerberos_v5} \
-	%{!?with_gss:--with-gssapi-impl=mit} \
+	%{!?with_gss:--with-gssapi-impl=heimdal} \
 	--with-html-dir=%{_gtkdocdir} \
 	--with-libgcrypt
 
