@@ -5,16 +5,17 @@
  @end copying
  
 -@dircategory Software libraries
-+@dircategory Libraries
++@dircategory Libraries:
  @direntry
- * GNU SASL: (gsasl).	GNU Simple Authentication and Security Layer Library.
+-* GNU SASL: (gsasl).	GNU Simple Authentication and Security Layer Library.
++* GNU SASL: (gsasl).			GNU Simple Authentication and Security Layer Library
  @end direntry
  
 -@dircategory Security
-+@dircategory Miscellaneous
++@dircategory Miscellaneous:
  @direntry
 -* gsasl: (gsasl)Invoking gsasl.		Command line interface to GNU SASL.
-+* gsasl: (gsasl)gsasl.		Command line interface to GNU SASL.
++* gsasl: (gsasl)gsasl.			Command line interface to GNU SASL
  @end direntry
  
  @titlepage
