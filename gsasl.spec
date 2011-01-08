@@ -9,19 +9,20 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	1.4.4
-Release:	2
+Version:	1.6.0
+Release:	1
 License:	LGPL v2.1+ (library), GPL v3+ (gsasl tool)
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gsasl/%{name}-%{version}.tar.gz
-# Source0-md5:	ab3e343717c0f67614e1398cfbab83b6
+# Source0-md5:	5a4cc39af4ba8dbd8b66380baf3c3c7d
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-heimdal-check.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	gnutls-devel >= 1.2.0
-%{?with_gss:BuildRequires:	gss-devel >= 0.0.0}
+%{?with_gss:BuildRequires:	gss-devel >= 1.0.0}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.1}
 BuildRequires:	libgcrypt-devel >= 1.3.0
 BuildRequires:	libidn-devel >= 0.1.0
@@ -84,7 +85,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GNU SASL
 License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-%{?with_gss:Requires:	gss-devel >= 0.0.0}
+%{?with_gss:Requires:	gss-devel >= 1.0.0}
 Requires:	libgcrypt-devel >= 1.3.0
 Requires:	libidn-devel >= 0.1.0
 %{?with_ntlm:Requires:	libntlm-devel >= 0.3.5}
@@ -115,8 +116,9 @@ Statyczna biblioteka GNU SASL.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
-rm -f po/stamp-po
+%{__rm} po/stamp-po
 
 %build
 %{__gettextize}
@@ -133,6 +135,7 @@ cd lib
 %{__automake}
 cd -
 %configure \
+	--disable-silent-rules \
 	%{?with_apidocs:--enable-gtk-doc} \
 	%{!?with_ntlm:--disable-ntlm} \
 	%{!?with_static_libs:--disable-static} \
