@@ -20,6 +20,7 @@ Patch1:		%{name}-heimdal-check.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	gnutls-devel >= 1.2.0
 %{?with_gss:BuildRequires:	gss-devel >= 1.0.0}
@@ -86,10 +87,10 @@ License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gss:Requires:	gss-devel >= 1.0.0}
+%{!?with_gss:Requires:	heimdal-devel}
 Requires:	libgcrypt-devel >= 1.3.0
 Requires:	libidn-devel >= 0.1.0
 %{?with_ntlm:Requires:	libntlm-devel >= 0.3.5}
-%{!?with_gss:Requires:	heimdal-devel}
 %{?with_kerberos5:Requires:	shishi-devel}
 Obsoletes:	libgsasl-devel
 
