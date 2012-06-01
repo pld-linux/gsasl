@@ -9,12 +9,12 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	1.6.1
-Release:	3
+Version:	1.8.0
+Release:	1
 License:	LGPL v2.1+ (library), GPL v3+ (gsasl tool)
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gsasl/%{name}-%{version}.tar.gz
-# Source0-md5:	7ae813eeb1f90ad52e9a781ac9e17f28
+# Source0-md5:	982fe54a20016aa46a871c084c990c36
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-heimdal-check.patch
 URL:		http://www.gnu.org/software/gsasl/
@@ -120,6 +120,10 @@ Statyczna biblioteka GNU SASL.
 %patch1 -p1
 
 %{__rm} po/stamp-po
+
+# remove it when "linking libtool libraries using a non-POSIX archiver ..." warning is gone
+# (after gsasl or libtool change)
+%{__sed} -i -e '/AM_INIT_AUTOMAKE/s/-Werror//' configure.ac lib/configure.ac
 
 %build
 %{__gettextize}
