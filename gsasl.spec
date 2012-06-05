@@ -3,6 +3,7 @@
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_with	gss		# use gss instead of Heimdal as GSSAPI implementation
 %bcond_with	kerberos5	# with KERBEROS_V5 mechanism (based on shishi, currently broken)
+%bcond_without	heimdal		# do not use Heimdal either
 %bcond_without	ntlm		# without NTLM mechanism
 %bcond_without	static_libs	# don't build static libraries
 #
@@ -30,8 +31,10 @@ BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	pkgconfig
+%if %{without gss}
 # alternatively, gss or krb5 can be used for GSSAPI
-%{!?with_gss:BuildRequires:	heimdal-devel}
+%{?with_heimdal:BuildRequires:	heimdal-devel}
+%endif
 %{?with_kerberos5:BuildRequires:	shishi-devel}
 BuildRequires:	texinfo
 Requires(post,postun):	/sbin/ldconfig
@@ -86,8 +89,11 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GNU SASL
 License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-%{?with_gss:Requires:	gss-devel >= 1.0.0}
-%{!?with_gss:Requires:	heimdal-devel}
+%if %{with gss}
+Requires:	gss-devel >= 1.0.0
+%else
+%{?with_heimdal:Requires:	heimdal-devel}
+%endif
 Requires:	libgcrypt-devel >= 1.3.0
 Requires:	libidn-devel >= 0.1.0
 %{?with_ntlm:Requires:	libntlm-devel >= 0.3.5}
@@ -145,7 +151,12 @@ cd -
 	%{!?with_ntlm:--disable-ntlm} \
 	%{!?with_static_libs:--disable-static} \
 	%{?with_kerberos5:--enable-kerberos_v5} \
-	%{!?with_gss:--with-gssapi-impl=heimdal} \
+%if %{with gss}
+	--with-gssapi-impl=gss
+%else
+	%{?with_heimdal:--with-gssapi-impl=heimdal} \
+	%{!?with_heimdal:--with-gssapi-impl=no} \
+%endif
 	--with-html-dir=%{_gtkdocdir} \
 	--with-libgcrypt
 
