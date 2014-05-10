@@ -18,6 +18,7 @@ Source0:	http://ftp.gnu.org/gnu/gsasl/%{name}-%{version}.tar.gz
 # Source0-md5:	982fe54a20016aa46a871c084c990c36
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-heimdal-check.patch
+Patch2:		%{name}-link.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10
@@ -26,6 +27,8 @@ BuildRequires:	gettext-devel >= 0.18.1
 BuildRequires:	gnutls-devel >= 1.2.0
 %{?with_gss:BuildRequires:	gss-devel >= 1.0.0}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.1}
+# used by examples/saml20 (noinst only)
+#BuildRequires:	lasso-devel >= 2.2.1
 BuildRequires:	libgcrypt-devel >= 1.3.0
 BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
@@ -124,6 +127,7 @@ Statyczna biblioteka GNU SASL.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %{__rm} po/stamp-po
 
