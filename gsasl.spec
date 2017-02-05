@@ -11,7 +11,7 @@ Summary:	GNU SASL - implementation of the Simple Authentication and Security Lay
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
 Version:	1.8.0
-Release:	4
+Release:	5
 License:	LGPL v2.1+ (library), GPL v3+ (gsasl tool)
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gsasl/%{name}-%{version}.tar.gz
@@ -123,6 +123,18 @@ Static GNU SASL library.
 %description static -l pl.UTF-8
 Statyczna biblioteka GNU SASL.
 
+%package apidocs
+Summary:	API documentation for GNU SASL library
+Summary(pl.UTF-8):	Dokumentacja API biblioteki GNU SASL
+Group:		Documentation
+Conflicts:	gsasl-devel < 1.8.0-5
+
+%description apidocs
+API documentation for GNU SASL library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki GNU SASL.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -130,6 +142,8 @@ Statyczna biblioteka GNU SASL.
 %patch2 -p1
 
 %{__rm} po/stamp-po
+# use system file (from gettext-tools)
+%{__rm} lib/m4/lib-link.m4
 
 # remove it when "linking libtool libraries using a non-POSIX archiver ..." warning is gone
 # (after gsasl or libtool change)
@@ -172,6 +186,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgsasl.la
+
 # libgsasl for lib, gsasl for app
 %find_lang %{name} --all-name
 
@@ -200,14 +217,18 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgsasl.so
-%{_libdir}/libgsasl.la
 %{_includedir}/gsasl*.h
 %{_pkgconfigdir}/libgsasl.pc
 %{_mandir}/man3/gsasl_*.3*
-%{?with_apidocs:%{_gtkdocdir}/gsasl}
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgsasl.a
+%endif
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/gsasl
 %endif
