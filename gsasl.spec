@@ -6,7 +6,7 @@
 %bcond_without	heimdal		# do not use Heimdal either
 %bcond_without	ntlm		# without NTLM mechanism
 %bcond_without	static_libs	# don't build static libraries
-#
+
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
@@ -128,6 +128,9 @@ Summary:	API documentation for GNU SASL library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki GNU SASL
 Group:		Documentation
 Conflicts:	gsasl-devel < 1.8.0-5
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API documentation for GNU SASL library.
