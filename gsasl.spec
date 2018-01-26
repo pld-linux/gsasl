@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# disable gtk-doc
+%bcond_with	apidocs		# disable gtk-doc
 %bcond_with	gss		# use gss instead of Heimdal as GSSAPI implementation
 %bcond_with	kerberos5	# with KERBEROS_V5 mechanism (based on shishi, currently broken)
 %bcond_without	heimdal		# do not use Heimdal either
@@ -11,7 +11,7 @@ Summary:	GNU SASL - implementation of the Simple Authentication and Security Lay
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
 Version:	1.8.0
-Release:	6
+Release:	7
 License:	LGPL v2.1+ (library), GPL v3+ (gsasl tool)
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gsasl/%{name}-%{version}.tar.gz
@@ -27,6 +27,7 @@ BuildRequires:	gettext-tools >= 0.18.1
 BuildRequires:	gnutls-devel >= 1.2.0
 %{?with_gss:BuildRequires:	gss-devel >= 1.0.0}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.1}
+%{!?with_apidocs:BuildRequires:	help2man}
 # used by examples/saml20 (noinst only)
 #BuildRequires:	lasso-devel >= 2.2.1
 BuildRequires:	libgcrypt-devel >= 1.3.0
