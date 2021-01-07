@@ -1,5 +1,5 @@
---- gsasl-1.4.4/doc/gsasl.texi.orig	2010-03-15 21:28:02.000000000 +0100
-+++ gsasl-1.4.4/doc/gsasl.texi	2010-07-26 15:08:24.000000000 +0200
+--- gsasl-1.10.0/doc/gsasl.texi.orig	2021-01-01 16:07:23.000000000 +0100
++++ gsasl-1.10.0/doc/gsasl.texi	2021-01-07 10:14:36.123073551 +0100
 @@ -24,14 +24,14 @@
  @end quotation
  @end copying
@@ -28,7 +28,25 @@
  
  Appendices
  
-@@ -2028,7 +2028,7 @@
+@@ -1580,7 +1580,7 @@
+ @code{gsasl_scram_secrets_from_password},
+ @code{gsasl_scram_secrets_from_salted_password} (@pxref{Utilities}) or
+ using the @code{--mkpasswd} parameter for the @code{gsasl} utility
+-(@pxref{Invoking gsasl}).
++(@pxref{gsasl}).
+ 
+ @item @code{GSASL_CB_TLS_UNIQUE}
+ 
+@@ -1970,7 +1970,7 @@
+ can also be derived by using the
+ @code{gsasl_scram_secrets_from_password} function (@pxref{Utilities}),
+ or through the @code{--mkpasswd} parameter for the @code{gsasl} utility
+-(@pxref{Invoking gsasl}).
++(@pxref{gsasl}).
+ 
+ In the server, the @code{GSASL_AUTHID} property (and, when provided by
+ the client, the @code{GSASL_AUTHZID} property) will be set in order for
+@@ -2476,7 +2476,7 @@
  @c **********************************************************
  @c ********************  Invoking gsasl  ********************
  @c **********************************************************
