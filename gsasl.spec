@@ -137,7 +137,7 @@ Summary:	API documentation for GNU SASL library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki GNU SASL
 Group:		Documentation
 Conflicts:	gsasl-devel < 1.8.0-5
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 API documentation for GNU SASL library.
