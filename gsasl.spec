@@ -5,7 +5,6 @@
 %bcond_with	gss		# GNU GSS as GSSAPI implementation
 %bcond_without	heimdal		# Heimdal as GSSAPI implementation (default)
 %bcond_with	krb5		# MIT Kerberos as GSSAPI implementation
-%bcond_with	shishi		# KERBEROS_V5 mechanism (based on shishi, currently broken)
 %bcond_without	ntlm		# NTLM mechanism
 %bcond_without	static_libs	# static library
 
@@ -20,14 +19,13 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	1.10.0
+Version:	2.0.0
 Release:	1
 License:	LGPL v2.1+ (library), GPL v3+ (gsasl tool)
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/gsasl/%{name}-%{version}.tar.gz
-# Source0-md5:	70918edd489eabceb622945940871348
+# Source0-md5:	dcecc9ebe25e5b5c395578363d32b2d0
 Patch0:		%{name}-info.patch
-Patch2:		%{name}-link.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.13
@@ -35,24 +33,22 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	gnutls-devel >= 3.4
 %{?with_gss:BuildRequires:	gss-devel >= 1.0.0}
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.1}
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.14}
 %{?with_heimdal:BuildRequires:	heimdal-devel}
 %{!?with_apidocs:BuildRequires:	help2man}
 %{?with_krb5:BuildRequires:	krb5-devel}
-# used by examples/saml20 (noinst only)
-#BuildRequires:	lasso-devel >= 2.2.1
 BuildRequires:	libgcrypt-devel >= 1.3.0
 BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
 BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.752
-%{?with_shishi:BuildRequires:	shishi-devel}
 BuildRequires:	texinfo
 Requires(post,postun):	/sbin/ldconfig
 Requires:	libgcrypt >= 1.3.0
 %{?with_ntlm:Requires:	libntlm >= 0.3.5}
-Obsoletes:	libgsasl
+Obsoletes:	libgsasl < 0.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -109,8 +105,7 @@ Requires:	gss-devel >= 1.0.0
 Requires:	libgcrypt-devel >= 1.3.0
 Requires:	libidn-devel >= 0.1.0
 %{?with_ntlm:Requires:	libntlm-devel >= 0.3.5}
-%{?with_shishi:Requires:	shishi-devel}
-Obsoletes:	libgsasl-devel
+Obsoletes:	libgsasl-devel < 0.1
 
 %description devel
 Header files for GNU SASL library.
@@ -124,7 +119,7 @@ Summary(pl.UTF-8):	Statyczna biblioteka GNU SASL
 License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-Obsoletes:	libgsasl-static
+Obsoletes:	libgsasl-static < 0.1
 
 %description static
 Static GNU SASL library.
@@ -148,32 +143,23 @@ Dokumentacja API biblioteki GNU SASL.
 %prep
 %setup -q
 %patch0 -p1
-%patch2 -p1
 
 %{__rm} po/stamp-po
 # use system file (from gettext-tools)
-%{__rm} lib/m4/lib-link.m4
+%{__rm} m4/lib-link.m4
 
 %build
 %{__gettextize}
 %{__libtoolize}
-%{__aclocal} -I m4
+%{__aclocal} -I m4 -I lib/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-cd lib
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-cd ..
 %configure \
 	--disable-silent-rules \
 	%{?with_apidocs:--enable-gtk-doc} \
 	%{!?with_ntlm:--disable-ntlm} \
 	%{!?with_static_libs:--disable-static} \
-	%{?with_shishi:--enable-kerberos_v5} \
 	--with-gssapi-impl=%{?with_gss:gss}%{?with_heimdal:heimdal}%{?with_krb5:mit}%{!?with_kerberos5:no} \
 	--with-html-dir=%{_gtkdocdir} \
 	--with-libgcrypt
@@ -210,7 +196,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/gsasl
 %attr(755,root,root) %{_libdir}/libgsasl.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgsasl.so.7
+%attr(755,root,root) %ghost %{_libdir}/libgsasl.so.18
 %{_mandir}/man1/gsasl.1*
 %{_infodir}/gsasl.info*
 
