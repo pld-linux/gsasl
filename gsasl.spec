@@ -3,28 +3,30 @@
 %bcond_without	apidocs		# API documentation
 %bcond_without	kerberos5	# GSSAPI mechanism
 %bcond_with	gss		# GNU GSS as GSSAPI implementation
+%bcond_with	gssglue		# libgssglue GSSAPI wrapper
 %bcond_without	heimdal		# Heimdal as GSSAPI implementation (default)
 %bcond_with	krb5		# MIT Kerberos as GSSAPI implementation
 %bcond_without	ntlm		# NTLM mechanism
 %bcond_without	static_libs	# static library
 
-%if %{with gss} || %{with krb5}
+%if %{with gss} || %{with gssglue} || %{with krb5}
 %undefine	with_heimdal
 %endif
 %if %{without kerberos5}
 %undefine	with_gss
+%undefine	with_gssglue
 %undefine	with_heimdal
 %undefine	with_krb5
 %endif
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	2.0.0
+Version:	2.0.1
 Release:	1
 License:	LGPL v2.1+ (library), GPL v3+ (gsasl tool)
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/gsasl/%{name}-%{version}.tar.gz
-# Source0-md5:	dcecc9ebe25e5b5c395578363d32b2d0
+# Source0-md5:	8fdc487ff9121d0903ac7e3edcd35cd0
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.64
@@ -38,6 +40,7 @@ BuildRequires:	gnutls-devel >= 3.4
 %{!?with_apidocs:BuildRequires:	help2man}
 %{?with_krb5:BuildRequires:	krb5-devel}
 BuildRequires:	libgcrypt-devel >= 1.3.0
+%{?with_gssglue:BuildRequires:	libgssglue-devel}
 BuildRequires:	libidn-devel >= 0.1.0
 %{?with_ntlm:BuildRequires:	libntlm-devel >= 0.3.5}
 BuildRequires:	libtool >= 2:2
@@ -103,6 +106,7 @@ Requires:	gss-devel >= 1.0.0
 %{?with_heimdal:Requires:	heimdal-devel}
 %endif
 Requires:	libgcrypt-devel >= 1.3.0
+%{?with_gssglue:Requires:	libgssglue-devel}
 Requires:	libidn-devel >= 0.1.0
 %{?with_ntlm:Requires:	libntlm-devel >= 0.3.5}
 Obsoletes:	libgsasl-devel < 0.1
@@ -160,7 +164,7 @@ Dokumentacja API biblioteki GNU SASL.
 	%{?with_apidocs:--enable-gtk-doc} \
 	%{!?with_ntlm:--disable-ntlm} \
 	%{!?with_static_libs:--disable-static} \
-	--with-gssapi-impl=%{?with_gss:gss}%{?with_heimdal:heimdal}%{?with_krb5:mit}%{!?with_kerberos5:no} \
+	--with-gssapi-impl=%{?with_gss:gss}%{?with_gssglue:gssglue}%{?with_heimdal:heimdal}%{?with_krb5:mit}%{!?with_kerberos5:no} \
 	--with-html-dir=%{_gtkdocdir} \
 	--with-libgcrypt
 
