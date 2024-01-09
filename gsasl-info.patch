@@ -1,6 +1,6 @@
---- gsasl-1.10.0/doc/gsasl.texi.orig	2021-01-01 16:07:23.000000000 +0100
-+++ gsasl-1.10.0/doc/gsasl.texi	2021-01-07 10:14:36.123073551 +0100
-@@ -24,14 +24,14 @@
+--- gsasl-2.2.1/doc/gsasl.texi.orig	2024-01-02 02:36:08.000000000 +0100
++++ gsasl-2.2.1/doc/gsasl.texi	2024-01-09 21:27:27.214698445 +0100
+@@ -24,14 +24,14 @@ Documentation License''.
  @end quotation
  @end copying
  
@@ -19,7 +19,7 @@
  @end direntry
  
  @titlepage
-@@ -68,7 +68,7 @@
+@@ -68,7 +68,7 @@ Documentation License''.
  * Examples::                    Demonstrate how to use the library.
  * Acknowledgements::            Whom to blame.
  
@@ -28,8 +28,8 @@
  
  Appendices
  
-@@ -1580,7 +1580,7 @@
- @code{gsasl_scram_secrets_from_password},
+@@ -1583,7 +1583,7 @@ authentication instead of the password.
+ using @code{gsasl_scram_secrets_from_password},
  @code{gsasl_scram_secrets_from_salted_password} (@pxref{Utilities}) or
  using the @code{--mkpasswd} parameter for the @code{gsasl} utility
 -(@pxref{Invoking gsasl}).
@@ -37,7 +37,7 @@
  
  @item @code{GSASL_CB_TLS_UNIQUE}
  
-@@ -1970,7 +1970,7 @@
+@@ -1982,7 +1982,7 @@ final authentication step.  The @code{GS
  can also be derived by using the
  @code{gsasl_scram_secrets_from_password} function (@pxref{Utilities}),
  or through the @code{--mkpasswd} parameter for the @code{gsasl} utility
@@ -46,7 +46,7 @@
  
  In the server, the @code{GSASL_AUTHID} property (and, when provided by
  the client, the @code{GSASL_AUTHZID} property) will be set in order for
-@@ -2476,7 +2476,7 @@
+@@ -2486,7 +2486,7 @@ This manual borrows text from the SASL s
  @c **********************************************************
  @c ********************  Invoking gsasl  ********************
  @c **********************************************************
