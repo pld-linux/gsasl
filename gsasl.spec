@@ -146,7 +146,7 @@ Dokumentacja API biblioteki GNU SASL.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %{__rm} po/stamp-po
 # use system file (from gettext-tools)
