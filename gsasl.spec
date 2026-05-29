@@ -21,12 +21,12 @@
 Summary:	GNU SASL - implementation of the Simple Authentication and Security Layer
 Summary(pl.UTF-8):	GNU SASL - implementacja Simple Authentication and Security Layer
 Name:		gsasl
-Version:	2.2.2
+Version:	2.2.3
 Release:	1
 License:	LGPL v2.1+ (library), GPL v3+ (gsasl tool)
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/gsasl/%{name}-%{version}.tar.gz
-# Source0-md5:	7b668e350fe09228f0f5e342175e04d6
+# Source0-md5:	b14d3ac957562f9c65f32deb73f84f4c
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gsasl/
 BuildRequires:	autoconf >= 2.64
@@ -199,14 +199,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/gsasl
-%attr(755,root,root) %{_libdir}/libgsasl.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgsasl.so.18
+%{_libdir}/libgsasl.so.*.*.*
+%ghost %{_libdir}/libgsasl.so.18
 %{_mandir}/man1/gsasl.1*
 %{_infodir}/gsasl.info*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgsasl.so
+%{_libdir}/libgsasl.so
 %{_includedir}/gsasl*.h
 %{_pkgconfigdir}/libgsasl.pc
 %{_mandir}/man3/gsasl_*.3*
